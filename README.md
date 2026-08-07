@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 42a663f0ae3c8de27ced7e17c7ffb0f71094cbfc
 # Kidney-Disease-Classification-MLflow-DVC
 
 
@@ -183,7 +179,4 @@ DVC
     AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
 
     ECR_REPOSITORY_NAME = simple-app
-<<<<<<< HEAD
-=======
 
->>>>>>> 42a663f0ae3c8de27ced7e17c7ffb0f71094cbfc
