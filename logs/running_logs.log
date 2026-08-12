@@ -61,3 +61,27 @@ Traceback (most recent call last):
   File "C:\Miniconda3\envs\Kidney\lib\site-packages\py7zr\py7zr.py", line 653, in _extract
     os.utime(str(outfilename), times=(lastmodified, lastmodified))
 FileNotFoundError: [WinError 3] The system cannot find the path specified: 'F:\\Kidney-Disease-Classification-MLflow-DVC\\artifacts\\data_ingestion\\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone\\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone\\Cyst\\Cyst- (1).jpg'
+[2026-08-12 13:12:47,031: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-12 13:12:47,060: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-12 13:12:47,071: INFO: common: created directory at: artifacts]
+[2026-08-12 13:12:47,075: INFO: common: created directory at: artifacts/prepare_base_model]
+[2026-08-12 14:26:10,884: INFO: main: >>>>> stage Data Ingestion stage started <<<<<]
+[2026-08-12 14:26:10,890: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-12 14:26:10,897: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-12 14:26:10,899: INFO: common: created directory at: artifacts]
+[2026-08-12 14:26:10,900: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-08-12 14:26:10,903: INFO: data_ingestion: Downloading data from https://drive.google.com/file/d/1nCwTmYBWTgwxrgEYZ6BPM1L-5ixlRJ99/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2026-08-12 14:27:08,717: INFO: data_ingestion: Downloaded data from https://drive.google.com/file/d/1nCwTmYBWTgwxrgEYZ6BPM1L-5ixlRJ99/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2026-08-12 14:42:46,204: INFO: main: >>>>> stage Data Ingestion stage completed!<<<<<
+
+x==========x]
+[2026-08-12 14:42:46,210: INFO: main: *******************]
+[2026-08-12 14:42:46,211: INFO: main: >>>>>> stage Prepare base model started <<<<<<]
+[2026-08-12 14:42:46,234: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-12 14:42:46,240: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-12 14:42:46,244: INFO: common: created directory at: artifacts]
+[2026-08-12 14:42:46,249: INFO: common: created directory at: artifacts/prepare_base_model]
+[2026-08-12 14:42:47,702: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-08-12 14:42:48,297: INFO: main: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
