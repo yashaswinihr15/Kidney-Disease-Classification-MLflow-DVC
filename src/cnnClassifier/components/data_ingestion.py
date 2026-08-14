@@ -43,9 +43,47 @@ class DataIngestion:
             raise e
 
     def extract_zip_file(self):
+        import shutil
+
         unzip_path = self.config.unzip_dir
+        temp_path = os.path.join(unzip_path, "temp_extract")
+
+        # Create directories
         os.makedirs(unzip_path, exist_ok=True)
 
-        with py7zr.SevenZipFile(self.config.local_data_file, mode="r") as archive:
-            archive.extractall(path=unzip_path)
+        # Remove previous incomplete extraction
+        if os.path.exists(temp_path):
+            shutil.rmtree(temp_path, ignore_errors=True)
+
+        os.makedirs(temp_path, exist_ok=True)
+
+        # Extract using 7-Zip
+        with py7zr.SevenZipFile(
+            self.config.local_data_file,
+            mode="r"
+        ) as archive:
+            archive.extractall(path=temp_path)
+
+        # Find the actual dataset folder
+        extracted_folder = os.path.join(
+            temp_path,
+            "CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone"
+        )
+
+        expected_folder = os.path.join(
+            unzip_path,
+            "CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone"
+        )
+
+        # Remove old incomplete dataset if present
+        if os.path.exists(expected_folder):
+            shutil.rmtree(expected_folder, ignore_errors=True)
+
+        # Move completed extraction into final location
+        if os.path.exists(extracted_folder):
+            shutil.move(extracted_folder, expected_folder)
+
+        # Remove temporary directory
+        if os.path.exists(temp_path):
+            shutil.rmtree(temp_path, ignore_errors=True)
             
