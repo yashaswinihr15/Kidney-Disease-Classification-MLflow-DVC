@@ -405,3 +405,212 @@ x==========x]
 [2026-08-15 00:08:07,569: INFO: stage_04_model_evaluation: >>>>>> stage Evaluation stage completed <<<<<<
 
 x==========x]
+[2026-08-15 00:37:03,659: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.6:8080]
+[2026-08-15 00:37:03,663: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2026-08-15 00:37:40,400: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:37:40] "GET / HTTP/1.1" 200 -]
+[2026-08-15 00:38:12,728: ERROR: app: Exception on /predict [POST]]
+Traceback (most recent call last):
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask_cors\extension.py", line 194, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "app.py", line 44, in predictRoute
+    result = clApp.classifier.predict()
+  File "f:\kidney-disease-classification-mlflow-dvc\src\cnnClassifier\pipeline\prediction.py", line 16, in predict
+    model = load_model(os.path.join("model", "model.h5"))
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\keras\saving\saving_api.py", line 212, in load_model
+    return legacy_sm_saving_lib.load_model(
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\keras\utils\traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\keras\saving\legacy\save.py", line 230, in load_model
+    raise IOError(
+OSError: No file or directory found at model\model.h5
+[2026-08-15 00:38:12,935: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:38:12] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -]
+[2026-08-15 00:38:53,679: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:38:53] "GET / HTTP/1.1" 200 -]
+[2026-08-15 00:39:07,208: ERROR: app: Exception on /predict [POST]]
+Traceback (most recent call last):
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask_cors\extension.py", line 194, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "app.py", line 44, in predictRoute
+    result = clApp.classifier.predict()
+  File "f:\kidney-disease-classification-mlflow-dvc\src\cnnClassifier\pipeline\prediction.py", line 16, in predict
+    model = load_model(os.path.join("model", "model.h5"))
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\keras\saving\saving_api.py", line 212, in load_model
+    return legacy_sm_saving_lib.load_model(
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\keras\utils\traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Miniconda3\envs\Kidney\lib\site-packages\keras\saving\legacy\save.py", line 230, in load_model
+    raise IOError(
+OSError: No file or directory found at model\model.h5
+[2026-08-15 00:39:07,217: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:39:07] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -]
+[2026-08-15 00:43:03,832: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.6:8080]
+[2026-08-15 00:43:03,833: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2026-08-15 00:43:07,508: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:43:07] "GET / HTTP/1.1" 200 -]
+[2026-08-15 00:43:16,218: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:43:16] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 00:43:28,158: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:43:28] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 00:43:43,426: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:43:43] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 00:43:56,931: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 00:43:56] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:03:45,584: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.6:8080]
+[2026-08-15 01:03:45,584: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2026-08-15 01:03:49,524: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 01:03:49] "GET / HTTP/1.1" 200 -]
+[2026-08-15 01:03:51,200: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:03:51] "GET / HTTP/1.1" 200 -]
+[2026-08-15 01:04:03,933: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:04:03] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:04:16,373: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:04:16] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:04:19,973: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:04:19] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:04:28,532: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:04:28] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:06:19,108: WARNING: polymorphic_function: 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x000001B9733BDAF0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.]
+[2026-08-15 01:06:19,116: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:06:19] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:06:34,132: WARNING: polymorphic_function: 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x000001B9747683A0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.]
+[2026-08-15 01:06:34,139: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:06:34] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:07:01,348: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:07:01] "GET / HTTP/1.1" 200 -]
+[2026-08-15 01:07:08,174: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:07:08] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:07:20,751: INFO: _internal: 172.20.10.6 - - [15/Aug/2026 01:07:20] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:12:40,726: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.6:8080]
+[2026-08-15 01:12:40,727: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2026-08-15 01:12:50,648: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 01:12:50] "GET / HTTP/1.1" 200 -]
+[2026-08-15 01:12:57,987: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 01:12:57] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:17:20,424: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.6:8080]
+[2026-08-15 01:17:20,425: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2026-08-15 01:17:36,915: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 01:17:36] "GET / HTTP/1.1" 200 -]
+[2026-08-15 01:17:45,886: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 01:17:45] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:17:57,900: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 01:17:57] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:18:38,296: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 01:18:38] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 01:23:08,437: INFO: stage_02_prepare_base_model: *******************]
+[2026-08-15 01:23:08,437: INFO: stage_02_prepare_base_model: >>>>>> stage Prepare base model started <<<<<<]
+[2026-08-15 01:23:08,440: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 01:23:08,443: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 01:23:08,446: INFO: common: created directory at: artifacts]
+[2026-08-15 01:23:08,446: INFO: common: created directory at: artifacts/prepare_base_model]
+[2026-08-15 01:23:09,082: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-08-15 01:23:09,392: INFO: stage_02_prepare_base_model: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2026-08-15 01:23:58,220: INFO: stage_03_model_training: *******************]
+[2026-08-15 01:23:58,220: INFO: stage_03_model_training: >>>>>> stage Training started <<<<<<]
+[2026-08-15 01:23:58,223: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 01:23:58,224: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 01:23:58,225: INFO: common: created directory at: artifacts]
+[2026-08-15 01:23:58,225: INFO: common: created directory at: artifacts\training]
+[2026-08-15 11:42:47,656: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.6:8080]
+[2026-08-15 11:42:47,657: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2026-08-15 11:42:53,671: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 11:42:53] "GET / HTTP/1.1" 200 -]
+[2026-08-15 11:43:09,996: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 11:43:09] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 11:43:26,325: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 11:43:26] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 12:17:12,867: INFO: stage_01_data_ingestion: >>>>> stage Data Ingestion stage started <<<<<]
+[2026-08-15 12:17:12,870: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 12:17:12,876: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 12:17:12,878: INFO: common: created directory at: artifacts]
+[2026-08-15 12:17:12,879: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-08-15 12:17:12,880: INFO: data_ingestion: Downloading data from https://drive.google.com/file/d/1nCwTmYBWTgwxrgEYZ6BPM1L-5ixlRJ99/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2026-08-15 12:18:09,904: INFO: data_ingestion: Downloaded data from https://drive.google.com/file/d/1nCwTmYBWTgwxrgEYZ6BPM1L-5ixlRJ99/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2026-08-15 12:28:02,208: INFO: data_ingestion: Dataset folder found at: artifacts/data_ingestion\temp_extract\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone\CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone]
+[2026-08-15 12:30:36,887: INFO: data_ingestion: Copied Normal dataset successfully.]
+[2026-08-15 12:31:42,760: INFO: data_ingestion: Copied Tumor dataset successfully.]
+[2026-08-15 12:31:58,529: INFO: data_ingestion: Dataset extraction completed successfully.]
+[2026-08-15 12:31:58,529: INFO: data_ingestion: ONLY Normal and Tumor are present.]
+[2026-08-15 12:31:58,532: INFO: stage_01_data_ingestion: >>>>> stage Data Ingestion stage completed!<<<<<
+
+x==========x]
+[2026-08-15 12:33:17,620: INFO: stage_02_prepare_base_model: *******************]
+[2026-08-15 12:33:17,622: INFO: stage_02_prepare_base_model: >>>>>> stage Prepare base model started <<<<<<]
+[2026-08-15 12:33:17,628: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 12:33:17,640: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 12:33:17,644: INFO: common: created directory at: artifacts]
+[2026-08-15 12:33:17,646: INFO: common: created directory at: artifacts/prepare_base_model]
+[2026-08-15 12:33:18,524: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-08-15 12:33:18,878: INFO: stage_02_prepare_base_model: >>>>>> stage Prepare base model completed <<<<<<
+
+x==========x]
+[2026-08-15 12:34:16,090: INFO: stage_03_model_training: *******************]
+[2026-08-15 12:34:16,091: INFO: stage_03_model_training: >>>>>> stage Training started <<<<<<]
+[2026-08-15 12:34:16,096: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 12:34:16,101: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 12:34:16,104: INFO: common: created directory at: artifacts]
+[2026-08-15 12:34:16,107: INFO: common: created directory at: artifacts\training]
+[2026-08-15 12:57:29,890: INFO: stage_03_model_training: >>>>>> stage Training completed <<<<<<
+
+x==========x]
+[2026-08-15 12:58:56,025: INFO: stage_04_model_evaluation: *******************]
+[2026-08-15 12:58:56,026: INFO: stage_04_model_evaluation: >>>>>> stage Evaluation stage started <<<<<<]
+[2026-08-15 12:58:56,030: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 12:58:56,035: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 12:58:56,036: INFO: common: created directory at: artifacts]
+[2026-08-15 13:02:03,817: INFO: common: json file saved at: scores.json]
+[2026-08-15 13:02:03,819: INFO: common: json file saved at: scores.json]
+[2026-08-15 13:02:03,820: INFO: stage_04_model_evaluation: >>>>>> stage Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-08-15 13:04:28,583: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://172.20.10.6:8080]
+[2026-08-15 13:04:28,584: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2026-08-15 13:04:38,605: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:04:38] "GET / HTTP/1.1" 200 -]
+[2026-08-15 13:04:58,187: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:04:58] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 13:05:10,267: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:05:10] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 13:05:13,746: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:05:13] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 13:05:20,757: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:05:20] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 13:11:27,616: INFO: stage_03_model_training: *******************]
+[2026-08-15 13:11:27,618: INFO: stage_03_model_training: >>>>>> stage Training started <<<<<<]
+[2026-08-15 13:11:27,628: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 13:11:27,634: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 13:11:27,635: INFO: common: created directory at: artifacts]
+[2026-08-15 13:11:27,637: INFO: common: created directory at: artifacts\training]
+[2026-08-15 13:29:04,078: INFO: stage_03_model_training: >>>>>> stage Training completed <<<<<<
+
+x==========x]
+[2026-08-15 13:32:18,404: INFO: stage_03_model_training: *******************]
+[2026-08-15 13:32:18,404: INFO: stage_03_model_training: >>>>>> stage Training started <<<<<<]
+[2026-08-15 13:32:18,424: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 13:32:18,428: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 13:32:18,429: INFO: common: created directory at: artifacts]
+[2026-08-15 13:32:18,429: INFO: common: created directory at: artifacts\training]
+[2026-08-15 13:49:41,884: INFO: stage_03_model_training: >>>>>> stage Training completed <<<<<<
+
+x==========x]
+[2026-08-15 13:51:02,402: INFO: stage_04_model_evaluation: *******************]
+[2026-08-15 13:51:02,404: INFO: stage_04_model_evaluation: >>>>>> stage Evaluation stage started <<<<<<]
+[2026-08-15 13:51:02,411: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 13:51:02,417: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 13:51:02,419: INFO: common: created directory at: artifacts]
+[2026-08-15 13:53:37,836: INFO: common: json file saved at: scores.json]
+[2026-08-15 13:53:37,837: INFO: common: json file saved at: scores.json]
+[2026-08-15 13:53:37,837: INFO: stage_04_model_evaluation: >>>>>> stage Evaluation stage completed <<<<<<
+
+x==========x]
