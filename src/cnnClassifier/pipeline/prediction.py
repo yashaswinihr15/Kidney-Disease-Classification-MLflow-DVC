@@ -1,19 +1,34 @@
+import os
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
-import os
 
 
 class PredictionPipeline:
+
     def __init__(self, filename):
+
         self.filename = filename
 
-    def predict(self):
-
-        # Load trained model
-        model = load_model(
-            os.path.join("artifacts", "training", "model.h5")
+        # Load model ONLY ONCE
+        model_path = os.path.join(
+            "artifacts",
+            "training",
+            "model.h5"
         )
+
+        print("Loading model...")
+        self.model = load_model(model_path)
+        print("Model loaded successfully!")
+
+        # IMPORTANT:
+        # This mapping matches your training output:
+        # Normal = 0
+        # Tumor  = 1
+        self.class_names = ["Normal", "Tumor"]
+
+
+    def predict(self):
 
         # Load image
         test_image = image.load_img(
@@ -28,20 +43,42 @@ class PredictionPipeline:
         test_image = test_image / 255.0
 
         # Add batch dimension
-        test_image = np.expand_dims(test_image, axis=0)
+        test_image = np.expand_dims(
+            test_image,
+            axis=0
+        )
 
         # Prediction
-        predictions = model.predict(test_image)
+        predictions = self.model.predict(
+            test_image,
+            verbose=0
+        )
 
-        print("Prediction probabilities:", predictions)
+        print(
+            "Prediction probabilities:",
+            predictions
+        )
 
-        result = np.argmax(predictions, axis=1)
+        # Get predicted class
+        predicted_index = np.argmax(
+            predictions,
+            axis=1
+        )[0]
 
-        print("Predicted class index:", result[0])
+        print(
+            "Predicted class index:",
+            predicted_index
+        )
 
-        # Current dataset mapping
-        class_names = ["Normal", "Tumor"]
+        prediction = self.class_names[predicted_index]
 
-        prediction = class_names[result[0]]
+        print(
+            "Final prediction:",
+            prediction
+        )
 
-        return [{"image": prediction}]
+        return [
+            {
+                "image": prediction
+            }
+        ]
