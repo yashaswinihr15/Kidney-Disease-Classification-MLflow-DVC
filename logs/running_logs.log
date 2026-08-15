@@ -639,3 +639,35 @@ x==========x]
 [2026-08-15 13:57:12,750: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:57:12] "POST /predict HTTP/1.1" 200 -]
 [2026-08-15 13:57:20,589: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:57:20] "POST /predict HTTP/1.1" 200 -]
 [2026-08-15 13:57:28,201: INFO: _internal: 127.0.0.1 - - [15/Aug/2026 13:57:28] "POST /predict HTTP/1.1" 200 -]
+[2026-08-15 14:12:58,356: INFO: stage_03_model_training: *******************]
+[2026-08-15 14:12:58,357: INFO: stage_03_model_training: >>>>>> stage Training started <<<<<<]
+[2026-08-15 14:12:58,360: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 14:12:58,362: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 14:12:58,362: INFO: common: created directory at: artifacts]
+[2026-08-15 14:12:58,363: INFO: common: created directory at: artifacts\training]
+[2026-08-15 14:12:59,042: ERROR: stage_03_model_training: 'Training' object has no attribute 'train_valid_generator']
+Traceback (most recent call last):
+  File "src/cnnClassifier/pipeline/stage_03_model_training.py", line 30, in <module>
+    obj.main()
+  File "src/cnnClassifier/pipeline/stage_03_model_training.py", line 20, in main
+    training.train_valid_generator()
+AttributeError: 'Training' object has no attribute 'train_valid_generator'
+[2026-08-15 14:14:23,440: INFO: stage_03_model_training: *******************]
+[2026-08-15 14:14:23,440: INFO: stage_03_model_training: >>>>>> stage Training started <<<<<<]
+[2026-08-15 14:14:23,442: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 14:14:23,444: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 14:14:23,445: INFO: common: created directory at: artifacts]
+[2026-08-15 14:14:23,446: INFO: common: created directory at: artifacts\training]
+[2026-08-15 14:35:30,081: INFO: stage_03_model_training: >>>>>> stage Training completed <<<<<<
+
+x==========x]
+[2026-08-15 15:01:47,807: INFO: stage_04_model_evaluation: *******************]
+[2026-08-15 15:01:47,809: INFO: stage_04_model_evaluation: >>>>>> stage Evaluation stage started <<<<<<]
+[2026-08-15 15:01:47,812: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-08-15 15:01:47,816: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-08-15 15:01:47,817: INFO: common: created directory at: artifacts]
+[2026-08-15 15:04:27,250: INFO: common: json file saved at: scores.json]
+[2026-08-15 15:04:27,252: INFO: common: json file saved at: scores.json]
+[2026-08-15 15:04:27,253: INFO: stage_04_model_evaluation: >>>>>> stage Evaluation stage completed <<<<<<
+
+x==========x]

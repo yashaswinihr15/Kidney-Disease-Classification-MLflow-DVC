@@ -8,24 +8,79 @@ class Training:
     def __init__(self, config: TrainingConfig):
         self.config = config
 
+    # ==========================================================
+    # LOAD BASE MODEL + FINE-TUNING
+    # ==========================================================
+
     def get_base_model(self):
+
         self.model = tf.keras.models.load_model(
             self.config.updated_base_model_path
         )
 
+        # ------------------------------------------------------
+        # Freeze all layers first
+        # ------------------------------------------------------
+
+        for layer in self.model.layers:
+            layer.trainable = False
+
+        # ------------------------------------------------------
+        # Fine-tune the last 6 layers
+        # ------------------------------------------------------
+
+        for layer in self.model.layers[-6:]:
+            layer.trainable = True
+
+        # ------------------------------------------------------
+        # Compile model
+        # ------------------------------------------------------
+
+        self.model.compile(
+            optimizer=tf.keras.optimizers.Adam(
+                learning_rate=1e-5
+            ),
+            loss="categorical_crossentropy",
+            metrics=["accuracy"]
+        )
+
+        print("\n========================================")
+        print("FINE-TUNING CONFIGURATION")
+        print("========================================")
+
+        trainable_params = sum(
+            tf.keras.backend.count_params(w)
+            for w in self.model.trainable_weights
+        )
+
+        non_trainable_params = sum(
+            tf.keras.backend.count_params(w)
+            for w in self.model.non_trainable_weights
+        )
+
+        print(
+            "Trainable parameters:",
+            trainable_params
+        )
+
+        print(
+            "Non-trainable parameters:",
+            non_trainable_params
+        )
+
+        print("========================================\n")
+
+    # ==========================================================
+    # TRAIN / VALIDATION DATA GENERATORS
+    # ==========================================================
+
     def train_valid_generator(self):
 
-        # --------------------------------------------------
-        # Image preprocessing
-        # --------------------------------------------------
         datagenerator_kwargs = dict(
             rescale=1.0 / 255.0,
             validation_split=0.20
         )
 
-        # --------------------------------------------------
-        # Image loading parameters
-        # --------------------------------------------------
         dataflow_kwargs = dict(
             target_size=self.config.params_image_size[:-1],
             batch_size=self.config.params_batch_size,
@@ -33,9 +88,10 @@ class Training:
             class_mode="categorical"
         )
 
-        # --------------------------------------------------
+        # ------------------------------------------------------
         # Validation generator
-        # --------------------------------------------------
+        # ------------------------------------------------------
+
         valid_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
             **datagenerator_kwargs
         )
@@ -47,9 +103,10 @@ class Training:
             **dataflow_kwargs
         )
 
-        # --------------------------------------------------
+        # ------------------------------------------------------
         # Training generator
-        # --------------------------------------------------
+        # ------------------------------------------------------
+
         if self.config.params_is_augmentation:
 
             train_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
@@ -73,9 +130,10 @@ class Training:
             **dataflow_kwargs
         )
 
-        # --------------------------------------------------
-        # IMPORTANT: Print class mapping
-        # --------------------------------------------------
+        # ------------------------------------------------------
+        # IMPORTANT: Check class mapping
+        # ------------------------------------------------------
+
         print("\n========================================")
         print("CLASS INFORMATION")
         print("========================================")
@@ -100,14 +158,10 @@ class Training:
             self.valid_generator.samples
         )
 
-        print(
-            "CLASS NAMES:",
-            self.train_generator.class_indices.keys()
-        )
+        # ------------------------------------------------------
+        # Count images per class
+        # ------------------------------------------------------
 
-        # --------------------------------------------------
-        # Print number of images in each class
-        # --------------------------------------------------
         print("\nImages per class:")
 
         for class_name, class_index in self.train_generator.class_indices.items():
@@ -122,20 +176,41 @@ class Training:
 
         print("========================================\n")
 
+    # ==========================================================
+    # SAVE MODEL
+    # ==========================================================
+
     @staticmethod
-    def save_model(path: Path, model: tf.keras.Model):
+    def save_model(
+        path: Path,
+        model: tf.keras.Model
+    ):
+
         model.save(path)
+
+    # ==========================================================
+    # TRAIN MODEL
+    # ==========================================================
 
     def train(self):
 
         import math
         import numpy as np
+
         from sklearn.utils.class_weight import compute_class_weight
 
-        # --------------------------------------------------
+        from tensorflow.keras.callbacks import (
+            EarlyStopping,
+            ReduceLROnPlateau
+        )
+
+        # ------------------------------------------------------
         # Calculate class weights
-        # --------------------------------------------------
-        classes = np.unique(self.train_generator.classes)
+        # ------------------------------------------------------
+
+        classes = np.unique(
+            self.train_generator.classes
+        )
 
         class_weights = compute_class_weight(
             class_weight="balanced",
@@ -144,18 +219,24 @@ class Training:
         )
 
         class_weights = dict(
-            zip(classes, class_weights)
+            zip(
+                classes,
+                class_weights
+            )
         )
 
         print("\n========================================")
         print("CLASS WEIGHTS")
         print("========================================")
+
         print(class_weights)
+
         print("========================================\n")
 
-        # --------------------------------------------------
-        # Calculate steps
-        # --------------------------------------------------
+        # ------------------------------------------------------
+        # Calculate training steps
+        # ------------------------------------------------------
+
         self.steps_per_epoch = math.ceil(
             self.train_generator.samples /
             self.train_generator.batch_size
@@ -176,21 +257,50 @@ class Training:
             self.validation_steps
         )
 
-        # --------------------------------------------------
-        # Train model
-        # --------------------------------------------------
+        # ------------------------------------------------------
+        # Early stopping
+        # ------------------------------------------------------
+
+        early_stopping = EarlyStopping(
+            monitor="val_loss",
+            patience=2,
+            restore_best_weights=True,
+            verbose=1
+        )
+
+        # ------------------------------------------------------
+        # Reduce learning rate
+        # ------------------------------------------------------
+
+        reduce_lr = ReduceLROnPlateau(
+            monitor="val_loss",
+            factor=0.2,
+            patience=1,
+            min_lr=1e-7,
+            verbose=1
+        )
+
+        # ------------------------------------------------------
+        # TRAIN
+        # ------------------------------------------------------
+
         self.model.fit(
             self.train_generator,
             epochs=self.config.params_epochs,
             steps_per_epoch=self.steps_per_epoch,
             validation_data=self.valid_generator,
             validation_steps=self.validation_steps,
-            class_weight=class_weights
+            class_weight=class_weights,
+            callbacks=[
+                early_stopping,
+                reduce_lr
+            ]
         )
 
-        # --------------------------------------------------
-        # Save trained model
-        # --------------------------------------------------
+        # ------------------------------------------------------
+        # SAVE MODEL
+        # ------------------------------------------------------
+
         self.save_model(
             path=self.config.trained_model_path,
             model=self.model
